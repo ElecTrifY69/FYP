@@ -51,7 +51,7 @@ class CheckOut(View):
             })
 
         subject = 'Order Successfully Created!'
-        from_email = 'Brihaspatifutsal2018@gmail.com'
+        from_email = 'Sirutarfutsal2018@gmail.com'
         to = [email]
         text_content = f'Hi {fullname}, your order has been confirmed!'
 
@@ -77,7 +77,7 @@ def sendordermail(request):
     send_mail(
         'New Order have been placed.',
         'This mail is to inform you that new orders have been placed by a customer. Please check your admin dashboard and confirm all orders.',
-        'Brihaspatifutsal2018@gmail.com',
+        'Sirutarfutsal2018@gmail.com',
         ['numb1prabesht7@gmail.com'],
         fail_silently=False,
     )

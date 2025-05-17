@@ -56,7 +56,7 @@ class FutsalBooking(View):
             request.session['booking'] = booking.id
             booking.save()
             subject = 'Futsal Booked Successfully!'
-            from_email = 'Brihaspatifutsal2018@gmail.com'
+            from_email = 'Sirutarfutsal2018@gmail.com'
             to = [email]
             text_content = f'Hi {fullname}, your futsal booking is confirmed for {date} at {time} for {playing_hours} hours.'
             html_content = render_to_string('Userfutsalbooking_email.html', {
