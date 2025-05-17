@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Order Confirmation</title>
+</head>
+<body style="font-family: Arial, sans-serif; background-color: #f3f3f3; padding: 20px;">
+  <table style="max-width: 600px; margin: auto; background: white; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+    <tr>
+      <td style="padding: 20px; background: #5cb85c; color: white; border-top-left-radius: 8px; border-top-right-radius: 8px;">
+        <h2 style="margin: 0;">✅ Order Confirmation</h2>
+      </td>
+    </tr>
+    <tr>
+      <td style="padding: 20px;">
+     <p>Thank you for your order, {{ fullname }}!</p>
+
+<p>Here are your order details:</p>
+
+<ul>
+  {% for product in ordered_products %}
+    <li>{{ product.name }} - {{ product.quantity }} × {{ product.price }} = {{ product.total }}</li>
+  {% endfor %}
+</ul>
+
+<p><strong>Total Amount: Rs. {{ grand_total }}</strong></p>
+
+<p>Phone: {{ phone }}</p>
+
+<p>Address: {{ address }}</p>
+
+<p>– Sirutar Futsal Team</p>
+
+      </td>
+    </tr>
+  </table>
+</body>
+</html>

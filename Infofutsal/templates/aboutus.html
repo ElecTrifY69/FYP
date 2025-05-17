@@ -1,0 +1,241 @@
+{% extends 'base.html' %} {% block content %} {% load static %}
+<!--Loaded static files for css and used base.html for header and footer-->
+<title>About Us - Sirutar Futsal</title>
+<link
+  rel="stylesheet"
+  type="text/css"
+  href="{% static '/css/aboutus.css' %}"
+/>
+<br><br><br><br><br>
+<!--First section starts-->
+<section class="home" id="home">
+  <div class="content">
+    <br><br><br>
+    <h1 class="heading"><span style="color: #68B8EB;">Sirutar Futsal</span> </h1>
+    <br>
+    <h3>One Team,<span style="color: #68B8EB;"> One Dream</span></h3>
+    <br>
+    <p>
+     Experience top-tier futsal with premium courts, seamless booking, and a vibrant sports community. Whether you're playing for fun or competing in tournaments, Sirutar Futsal is your go-to destination for the ultimate futsal experience.
+    </p>
+<div style="display: flex; gap: 10px;">
+    <a href="/contactus" class="btn" style="background-color: #68B8EB; color: #fff; border-color: #68B8EB;">
+        Contact Us <span class="fas fa-chevron-right"></span>
+    </a>
+    <a href="/review" class="btn" style="background-color: #68B8EB; color: #fff; border-color: #68B8EB;">
+        Send us your review <span class="fas fa-chevron-right"></span>
+    </a>
+</div>
+
+    <br><br>
+  </div>
+</section>
+
+<!-- First section ends -->
+<!--Scroll Down-->
+
+<a href="#about">
+<!--Scroll Down CSS-->
+  <style>
+.scroll_down {
+  position: absolute;
+  bottom: -45px;
+  left: 50%;
+  width: 40px;
+  height: 40px;
+  transform: translateY(-80px) translateX(50%) rotate(45deg);
+}
+.scroll_down span {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  border-bottom: 2px solid #fff;
+  border-right: 2px solid #fff;
+  animation: animate 1.5s linear infinite;
+}
+.scroll_down span:nth-child(1) {
+  transform: translate(-15px, -15px);
+  animation-delay: -0.4s;
+}
+.scroll_down span:nth-child(2) {
+  transform: translate(0, 0);
+  animation-delay: -0.2s;
+}
+.scroll_down span:nth-child(3) {
+  transform: translate(15px, 15px);
+  animation-delay: -0s;
+}
+@keyframes animate {
+  0% {
+    top: -5px;
+    left: -5px;
+    opacity: 0;
+  }
+  25% {
+    top: 0px;
+    left: 0px;
+    opacity: 1;
+  }
+  50%,
+  100% {
+    top: -5px;
+    left: -5px;
+    opacity: 0;
+  }
+}
+
+  </style>
+  </a>
+  <!--Scroll Down Css Ends-->
+<!-- about section starts  -->
+<!-- about section ends -->
+<!-- services section starts  -->
+
+<section class="services" id="services">
+  <h1 class="heading">Our <span style="color: #68B8EB;">Services</span></h1>
+
+  <div class="box-container">
+    <div class="box">
+      <i class="fas fa-futbol"></i>
+      <h3>Play Futsal</h3>
+      <p>
+        You've chosen a great futsal, booked it with ease, and now it's time to play. The stage has been set for your epic futsal match.
+      </p>
+      <a href="#" class="btn">
+        learn more <span class="fas fa-chevron-right"></span>
+      </a>
+    </div>
+
+    <div class="box">
+      <i class="fas fa-calendar-alt"></i>
+      <h3>Book Futsal Online</h3>
+      <p>
+        Connect with the venue through the Book Now Button to make an online booking and secure easier payment.
+      </p>
+      <a href="#" class="btn">
+        learn more <span class="fas fa-chevron-right"></span>
+      </a>
+    </div>
+
+    <div class="box">
+      <i class="fas fa-shopping-bag"></i>
+      <h3>Online Shopping</h3>
+      <p>
+        Players can get your sport wears from our own shop for extra discount and easy payment methods.
+      </p>
+      <a href="#" class="btn">
+        learn more <span class="fas fa-chevron-right"></span>
+      </a>
+    </div>
+
+    <div class="box">
+      <i class="fas fa-credit-card"></i>
+      <h3>Online Payments</h3>
+      <p>
+        Book/Order your futsal time with futsal wears using online payment. We accept E-Sewa payment.
+      </p>
+      <a href="#" class="btn">
+        learn more <span class="fas fa-chevron-right"></span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- services section ends -->
+<!-- Our Teams section starts  -->
+
+<section class="teams" id="teams">
+  <h1 class="heading">Our <span style="color: #68B8EB;">Team</span></h1>
+
+  <div class="box-container">
+    <div class="box">
+      <img src="{% static 'images/owner.jpg' %}" alt="Roshan Bista"/>
+      <h3>Roshan Bista</h3>
+      <span>Owner</span>
+    </div>
+
+    <div class="box">
+      <img src="{% static 'images/manager.jpg' %}" alt="Sanjay Thapa"/>
+      <h3>Sanjay Thapa</h3>
+      <span>Manager</span>
+    </div>
+
+    <div class="box">
+      <img src="{% static 'images/coowner.jpg' %}" alt="Amrit Bista"/>
+      <h3>Amrit Bista</h3>
+      <span>Co-Owner</span>
+    </div>
+  </div>
+</section>
+
+<!-- Our Teams section ends -->
+<!-- Review section starts  -->
+
+<section class="review" id="review">
+
+<h1 class="heading">Player's  <span style="color: #68B8EB;">Review</span></h1>
+<div class="row">
+  {% for review in review %}
+  <div class="col mx-auto mb-3" id="{{review.id}}" >
+    <div class="box-container">
+      <div class="box" >
+        <img src="{{review.photo.url}}" alt="" />
+        <h3 style="color: #68B8EB;">{{review.fullname}}</h3>
+        <p class="text">
+          {{review.message}}
+        </p>
+      </div>
+    </div>
+  </div>
+{% empty %}
+<div class="col-12 text-center my-5">
+  <div class="p-4 rounded shadow-sm" style="background-color: #f8f9fa; max-width: 500px; margin: 0 auto;">
+    <i class="fas fa-comment-slash" style="font-size: 2.5rem; color: #68B8EB;"></i>
+    <h4 class="mt-3" style="color: #333;">No Reviews Yet</h4>
+    <p style="color: #666;">Be the first to share your experience with us!</p>
+    <a href="/review" class="btn btn-primary mt-2" style="background-color: #68B8EB; border: none;">Leave a Review</a>
+  </div>
+</div>
+{% endfor %}
+
+</div>
+
+  <br><br>
+
+<h1 class="heading">Futsal  <span style="color: #68B8EB;">Location</span></h1>
+<section class="map top" id="futsallocation">
+  <iframe
+    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3534.0272783930777!2d85.3737525749212!3d27.654627727815704!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39eb111e39b72695%3A0xd441ab3f1b599c1e!2ssirutar%20Futsall!5e0!3m2!1sen!2snp!4v1740037750923!5m2!1sen!2snp"
+    width="600"
+    height="600"
+    style="border: 0"
+    allowfullscreen=""
+    loading="lazy"
+  ></iframe>
+  <style>
+    .map iframe {
+width: 100%;
+}
+  </style>
+</section>
+<!-- Review section ends -->
+<!-- Custom js file link  -->
+<script>
+  let menu = document.querySelector('#menu-btn');
+let navbar = document.querySelector('.navbar');
+
+menu.onclick = () =>{
+    menu.classList.toggle('fa-times');
+    navbar.classList.toggle('active');
+}
+
+window.onscroll = () =>{
+    menu.classList.remove('fa-times');
+    navbar.classList.remove('active');
+}
+</script>
+</section>
+{% endblock %}

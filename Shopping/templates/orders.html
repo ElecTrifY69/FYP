@@ -1,0 +1,205 @@
+
+{% load static %}
+{% load custom_filter %}
+{% load cart %}
+<head>
+<!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+      <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
+       <link rel="shortcut icon" type="x-icon" href="https://i.ibb.co/Y34f0yV/icontaskbar.png">
+            <link
+      rel="stylesheet"
+      type="text/css"
+      href="{% static '/css/orders.css' %}"
+    />
+     <title>Orders - Sirutar Futsal</title>
+     <script src="https://khalti.s3.ap-south-1.amazonaws.com/KPG/dist/2020.12.17.0.0.0/khalti-checkout.iffe.js"></script>
+  </head>
+ 
+  <body>
+
+   <!-- Navigation Bar-->
+   <br>
+   <br>
+    <style>
+      .fbinstaicon {
+  margin-right: 20px;
+}
+.fbinstaicon .fbinstabutton {
+  display: inline-block;
+  height: 60px;
+  width: 60px;
+  margin: 0 5px;
+  overflow: hidden;
+  background: #fff;
+  border-radius: 50px;
+  cursor: pointer;
+  box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease-out;
+}
+.fbinstaicon .fbinstabutton:hover {
+  width: 175px;
+}
+.fbinstaicon .fbinstabutton .icon {
+  display: inline-block;
+  height: 60px;
+  width: 60px;
+  text-align: center;
+  border-radius: 50px;
+  box-sizing: border-box;
+  line-height: 60px;
+  transition: all 0.3s ease-out;
+}
+.fbinstaicon .fbinstabutton:nth-child(1):hover .icon {
+  background: #4267b2;
+}
+.fbinstaicon .fbinstabutton:nth-child(2):hover .icon {
+  background: #e1306c;
+}
+.fbinstaicon .fbinstabutton .icon i {
+  font-size: 25px;
+  line-height: 60px;
+  transition: all 0.3s ease-out;
+}
+.fbinstaicon .fbinstabutton:hover .icon i {
+  color: #fff;
+}
+.fbinstaicon .button span {
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 60px;
+  margin-left: 10px;
+  transition: all 0.3s ease-out;
+}
+.fbinstaicon .fbinstabutton:nth-child(1) span {
+  color: #4267b2;
+}
+.fbinstaicon .fbinstabutton:nth-child(2) span {
+  color: #e1306c;
+}
+    </style>
+
+<div class="small-container cart-page">
+    <p class="display-4 pl-4 ml-4" style="font-family: 'Poppins' , sans-serif; text-align: center;">Your Orders</p>
+   
+      <table>
+        <tr>
+          <th>&nbsp;&nbsp;Sno.</th>
+          <th>Image</th>
+          <th>Product</th>
+          <th>Date</th>
+          <th>Price</th>
+          <th>Quantity</th>
+          <th>&nbsp;Total</th>
+          <th>Status&nbsp;&nbsp;</th>
+        </tr>
+        <tr>
+          <tbody>
+        {% for order in orders %}
+        <tr>
+          <td>&nbsp;&nbsp;{{forloop.counter}}</td>
+          <td>
+            <img
+              style="height: 70px"
+              src="{{order.product.image.url}}"
+              alt=""
+            />
+          </td>
+          <td>{{order.product.name}}</td>
+          <td>{{order.date}}</td>
+          <td>{{order.product.price|currency}}</td>
+          <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{order.quantity}}</td>
+          <td>{{order.quantity|multiply:order.price|currency}}</td>
+          {% if order.status %}
+          <td style="color: rgb(0, 119, 54)">Completed</td>
+          {%else%}
+          <td style="color: rgb(221, 14, 14)">Pending</td>
+          {% endif %}
+          <!-- {% if order.status %}
+          <td><small class="badge badge-success">Completed</small></td>
+          {%else%}
+          <td><small class="badge badge-warning">Pending</small></td>
+          {% endif %} -->
+        </tr>
+
+        {% endfor %}
+        `
+      </tbody>
+      
+    </table>
+   <div class="row"><a href="http://127.0.0.1:8000/shopping">
+    <input
+      type="button"
+      style="margin-left: 820px; background-color: #68B8EB; color: white; border-color: #68B8EB;"
+      class="btn float-right col-lg-2.2"
+      value="Back To Shopping"
+  /></a>
+<!--  <a href="http://127.0.0.1:8000/orders_pdf">-->
+<!--    <input-->
+<!--      type="button"-->
+<!--      style="margin-left: 835px;"-->
+<!--      class="btn float-right col-lg-2.2"-->
+<!--      value="Download PDF"-->
+<!--  /></a>-->
+<!-- -->
+    
+            <script>
+               function verifyPayment(payload) {
+        $.ajax({
+            url: "{% url 'verify_payment' %}",
+            type: "POST",
+            data: payload,
+            dataType: 'json',
+            success: function (response) { alert(response) },
+            error: function (error) { alert(error.responseJSON['message']) }
+        });
+    }
+
+    var config = {
+            // replace the publicKey with yours
+            "publicKey": "test_public_key_a877f02f77be49419708f54777fcefb4",
+            "productIdentity": "order_{{order.id}}",
+            "productName": "order_{{order.id}}",
+            "productUrl": "http://localhost:8000",
+            "paymentPreference": [
+                "KHALTI",
+                ],
+            "eventHandler": {
+                onSuccess (payload) {
+                    // hit merchant api for initiating verfication
+                    axios.get("/khalti-verify/", {
+                        params: {
+                            "token": payload.token,
+                            "amount": payload.amount,
+                            "order_id": "{{order.id}}"
+                        }
+                    }).then(function(resp){
+                        if (resp.data.success == true){
+                            alert("Thanks. Payment Completed Successfully")
+                            location.href = "/"
+                        }else{
+                            alert("Sorry. Error occurred")
+                            location.href = "{{request.build_absolute_uri}}"
+                        }
+                    })
+                },
+                onError (error) {
+                    console.log(error);
+                },
+                onClose () {
+                    console.log('widget is closing');
+                }
+            }
+        };
+
+        var checkout = new KhaltiCheckout(config);
+        var btn = document.getElementById("payment-button");
+        btn.onclick = function () {
+            // minimum transaction amount must be 10, i.e 1000 in paisa.
+            checkout.show({amount: 1000});
+        }
+          </script> 
+  </div>
+</div>
+

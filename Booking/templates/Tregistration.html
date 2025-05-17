@@ -1,0 +1,307 @@
+{% extends 'base.html' %} {% block content %} {% load static %}
+<head>
+  <title>Sirutar Futsal - Tournament Registration</title>
+</head>
+
+<br><br><br><br><br>
+<h1 class="tou" style="text-align: center;">Open Sirutar Futsal Tournament-2025</h1>
+<h3 class="th3" style="text-align: center;">Please! Fill the below form with proper information.</h3>
+
+
+<div class="container">
+
+  {% if messages %}
+  <ul class="messages" style="text-align: center;">
+    {% for message in messages %}
+    <li{% if message.tags %} class="alert alert-info {{ message.tags }}"{% endif %}>{{ message }}</li>
+    {% endfor %}
+  </ul>
+  {% endif %}
+  <div class="title">Futsal Tournament Registration</div>
+
+  <div class="content">
+    <form class="" method="POST">
+      {% csrf_token %}
+
+      <div class="user-details">
+        <div class="input-box">
+          <span class="details">Full Name</span>
+          <input
+            name="name"
+            type="text"
+            placeholder="Enter your Full Name"
+            required
+          />
+        </div>
+        <div class="input-box">
+          <span class="details">Team Name</span>
+          <input
+            name="team_name"
+            type="text"
+            placeholder="Enter your Team Name"
+            required
+          />
+        </div>
+        <div class="input-box">
+          <span class="details">Address</span>
+          <input
+            name="address"
+            type="text"
+            placeholder="Enter your Address"
+            required
+          />
+        </div>
+        <div class="input-box">
+          <span class="details">Phone Number</span>
+          <input
+            name="number"
+            type="text"
+            placeholder="Enter your Number"
+            required
+          />
+        </div>
+        <div class="input-box">
+          <span class="details">Team Captain Name</span>
+          <input
+            name="captain_name"
+            type="text"
+            placeholder="Enter your Team Captain Name"
+            required
+          />
+        </div>
+        <div class="input-box">
+          <span class="details">Team Manager Name</span>
+          <input
+            name="manager_name"
+            type="text"
+            placeholder="Enter Your Team Manager Name"
+            required
+          />
+        </div>
+      </div>
+      <div class="user-details">
+        <div class="input-box">
+          <span class="details">Player 1 Name</span>
+          <input
+            name="one_player"
+            type="text"
+            placeholder="Player 1 Name"
+            required
+          />
+        </div>
+        <div class="input-box">
+          <span class="details">Player 2 Name</span>
+          <input
+            name="two_player"
+            type="text"
+            placeholder="Player 2 Name"
+            required
+          />
+        </div>
+        <div class="input-box">
+          <span class="details">Player 3 Name</span>
+          <input
+            name="three_player"
+            type="text"
+            placeholder="Player 3 Name"
+            required
+          />
+        </div>
+        <div class="input-box">
+          <span class="details">Player 4 Name</span>
+          <input
+            name="four_player"
+            type="text"
+            placeholder="Player 4 Name"
+            required
+          />
+        </div>
+        <div class="input-box">
+          <span class="details">Player 5 Name</span>
+          <input
+            name="five_player"
+            type="text"
+            placeholder="Player 5 Name"
+            required
+          />
+        </div>
+        <div class="input-box">
+          <span class="details">Player 6 Name</span>
+          <input
+            name="six_player"
+            type="text"
+            placeholder="Player 6 Name"
+            required
+          />
+        </div>
+        <div class="input-box">
+          <span class="details">Player 7 Name</span>
+          <input
+            name="seven_player"
+            type="text"
+            placeholder="Player 7 Name"
+            required
+          />
+        </div>
+        <div class="input-box">
+          <span class="details">Player 8 Name</span>
+          <input
+            name="eight_player"
+            type="text"
+            placeholder="Player 8 Name"
+            required
+          />
+        </div>
+      </div>
+<div class="user-details">
+        <div class="input-box">
+          <span class="details">Team Jersey Color</span>
+          <input
+            name="jersey_color"
+            type="text"
+            placeholder="Enter your Team Jersey Color"
+            required
+          />
+        </div>
+        <div class="input-box">
+          <span class="details">Team Coach</span>
+          <input
+            name="coach_name"
+            type="text"
+            placeholder="Enter your Coach Name"
+            required
+          />
+        </div>
+        </div>
+      <div class="button">
+        <input type="submit" style="background-color: #68B8EB; color: white; border-color: #68B8EB;" value="Register" />
+      </div>
+
+    </form>
+
+<!--    <div class="googleform">-->
+<!--      <h2 class="gglefrm" style="text-align: center; font-size: 20px;">OR<br> Use Google Form!</h2>-->
+<!--    </div>-->
+<!--    <div class="tregbtn" style="text-align: center;">-->
+<!--      <a href="https://docs.google.com/forms/d/e/1FAIpQLSf4ksghindvLVFwEJMB6QGYBew4iOTXx5uB36SXrYZGSxBoXQ/viewform?embedded=true" class="btn">Google Form</a>-->
+<!--    </div>-->
+
+  </div>
+</div>
+<style>
+  /* General Styling */
+body {
+  font-family: 'Poppins', sans-serif;
+  background-color: #f4f4f4;
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  width: 60%;
+  margin: 50px auto;
+  background: #ffffff;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.title {
+  font-size: 28px;
+  font-weight: bold;
+  text-align: center;
+  color: #333;
+  margin-bottom: 20px;
+}
+ .alert {
+    padding: 10px;
+    background-color: #17a2b8;
+    color: white;
+    margin-top: 10px;
+    border-radius: 5px;
+  }
+/* Form Styling */
+.user-details {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.input-box {
+  width: 48%;
+  margin-bottom: 15px;
+}
+
+.input-box span.details {
+  font-size: 16px;
+  font-weight: 500;
+  color: #555;
+  display: block;
+  margin-bottom: 5px;
+}
+
+.input-box input {
+  width: 100%;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  font-size: 14px;
+  transition: all 0.3s;
+}
+
+.input-box input:focus {
+  border-color: #007bff;
+  outline: none;
+  box-shadow: 0 0 8px rgba(0, 123, 255, 0.2);
+}
+
+/* Button Styling */
+.button {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.button input {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 12px 25px;
+  font-size: 16px;
+  font-weight: bold;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.button input:hover {
+  background-color: #0056b3;
+}
+
+/* Google Form Button */
+.tregbtn a.btn {
+  display: inline-block;
+  background-color: #28a745;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 5px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+.tregbtn a.btn:hover {
+  background-color: #218838;
+}
+
+@media (max-width: 768px) {
+  .container {
+    width: 90%;
+  }
+  .input-box {
+    width: 100%;
+  }
+}
+
+</style>
+
+{% endblock %}

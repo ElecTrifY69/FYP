@@ -1,0 +1,125 @@
+{% extends 'base.html' %}
+{% load cart %}
+{% load static %}
+{% load custom_filter %}
+{% block content %}
+<title>Shopping - Sirutar Futsal</title>
+
+<!-- Body -->
+<body style="background-color: #000; color: #fff;">
+
+  <br><br><br><br><br>
+  <div>
+    <div class="d-grid gap-3 d-md-flex justify-content-md-end">
+      <a href="http://127.0.0.1:8000/cart" style="position: relative; right: 8%">
+        <button type="button" class="btn btn-dark justify-content-md-end">
+          MyCart <span class="badge badge-info">{{request.session.cart.keys|length}}</span>
+        </button>
+      </a>
+      <a href="http://127.0.0.1:8000/orders" style="position: absolute; right: 2%">
+        <button type="button" class="btn btn-dark me-md-3">Order</button>
+      </a>
+    </div>
+  </div>
+
+  <div class="container-fluid mt-3">
+    <div class="row">
+
+      <!-- All Filters -->
+      <div class="col-lg-2 mx-auto">
+        <div class="list-group">
+          <a href="/shopping" class="btn btn-dark">All Category</a>
+          {% for category in categories %}
+            <a href="?category={{ category.id }}" class="list-group-item list-group-item-action btn-dark text-white">{{ category.name }}</a>
+          {% endfor %}
+        </div>
+      </div>
+
+      <!-- All Products -->
+      <div id="products" class="col-lg-9 mx-auto">
+        <div class="row mx-auto">
+          {% for product in products %}
+            <div class="card mx-auto mb-3" id="{{product.id}}" style="width: 18rem; background-color: #111; color: #fff; border: none; box-shadow: none;">
+              <img src="{{product.image.url}}" class="card-img-top" alt="..." />
+              <div class="card-body">
+                <h5 class="card-title" style="text-align: center; color: #fff;">{{product.name}}</h5>
+                <p class="card-text" style="text-align: center; color: #fff;">{{product.price|currency}}</p>
+              </div>
+              <div class="card-footer p-0.1 row no-gutters">
+                {% if product|is_in_cart:request.session.cart %}
+                  <div class="row">
+<form action="" method="post" class="col-2">
+  {% csrf_token %}
+  <input hidden type="text" name="product" value='{{product.id}}'>
+  <input hidden type="text" name="remove" value='True'>
+  <input hidden type="text" name="category" value="{{ request.GET.category }}">
+  <input type="submit" style="background-color: #68B8EB; color: white; border-color: #68B8EB;" value="-" class="btn btn-danger">
+</form>
+
+                    <div class="text-center col">{{product|cart_quantity:request.session.cart}} in cart</div>
+                   <form action="" method="post" class="col-2">
+  {% csrf_token %}
+  <input hidden type="text" name="product" value='{{product.id}}'>
+  <input hidden type="text" name="category" value="{{ request.GET.category }}">
+  <input type="submit" style="background-color: #68B8EB; color: white; border-color: #68B8EB;" value="+" class="btn btn-success">
+</form>
+
+                  </div>
+
+                {% else %}
+                 <form action="" method="POST" class="btn-block">
+  {% csrf_token %}
+  <input hidden type="text" name="product" value='{{product.id}}'>
+  <input hidden type="text" name="category" value="{{ request.GET.category }}">
+  <input type="submit" class="float-right btn btn-light form-control" value="Add to Cart"
+         style="background-color: #68B8EB; color: white; border-color: #68B8EB;">
+</form>
+
+
+                {% endif %}
+              </div>
+            </div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <style>
+    /* General Button Style */
+    .btn {
+      background-color: #e0623c;
+      color: white;
+    }
+    .btn:hover {
+      background-color: #e0623c;
+      color: white;
+    }
+
+    /* Cart and Other Buttons */
+    .btn-dark {
+      background-color: #333;
+      color: white;
+    }
+    .btn-dark:hover {
+      background-color: #444;
+    }
+
+    .list-group-item {
+      background-color: #333;
+      color: white;
+    }
+    .list-group-item:hover {
+      background-color: #444;
+    }
+
+    /* Card Style for blending with black */
+    .card {
+      background-color: #111; /* Dark gray close to black */
+      color: #fff; /* White text for contrast */
+      border: none; /* Remove borders */
+      box-shadow: none; /* Remove shadow for seamless look */
+    }
+  </style>
+
+{% endblock %}

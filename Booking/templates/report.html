@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Booking Report - Sirutar Futsal</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+    <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
+    <link rel="shortcut icon" type="x-icon" href="https://i.ibb.co/Y34f0yV/icontaskbar.png">
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Poppins", sans-serif;
+      }
+      h1 {
+        text-align: center;
+        color: #6c63ff;
+        font-size: 60px;
+        font-weight: 900;
+      }
+      h3 {
+        text-align: center;
+        color: #4267b2;
+      }
+      form {
+        margin-left: 125px;
+      }
+      .btn-info {
+        background-color: #4267b2;
+        border-color: #4267b2;
+        color: white;
+      }
+      .btn-info:hover {
+        background-color: #324e8a;
+        border-color: #324e8a;
+      }
+      .basic-table {
+        border-collapse: collapse;
+        width: 100%;
+        margin: 20px 0;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      }
+      .basic-table thead tr {
+        background-color: #6c63ff;
+        color: white;
+        text-align: left;
+      }
+      .basic-table th,
+      .basic-table td {
+        padding: 12px 15px;
+      }
+      .basic-table tbody tr {
+        border-bottom: 1px solid #dddddd;
+      }
+      .basic-table tbody tr:nth-of-type(even) {
+        background-color: #f3f3f3;
+      }
+      .basic-table tbody tr:hover {
+        background-color: #f1f1f1;
+      }
+      .table-responsive {
+        overflow-x: auto;
+      }
+    </style>
+  </head>
+  <body>
+    <br><br><br><br>
+    <h1>Futsal Booking Report</h1>
+    <h3>See your futsal booking report!</h3>
+    <br><br>
+    <form method="POST">
+      {% csrf_token %}
+      <div>
+        From : <input type="date" name="fromdate">
+        To : <input type="date" name="todate">
+        <input type="submit" value="Search" class="btn btn-primary">
+      </div>
+      <hr>
+      <br>
+      <div class="container">
+        <div class="table-responsive">
+          <table class="basic-table table-headers table table-hover">
+            <thead>
+              <tr>
+                <th>Booking ID</th>
+                <th>Booking Name</th>
+                <th>Booking Date</th>
+                <th>Booking Time</th>
+                <th>Booking Hours</th>
+                <th>Booked At</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for booking in data %}
+              <tr>
+                <td>{{booking.id}}</td>
+                <td>{{booking.fullname}}</td>
+                <td>{{booking.date}}</td>
+                <td>{{booking.time}}</td>
+                <td>{{booking.playing_hours}}</td>
+                <td>{{booking.booked_at}}</td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </form>
+    <a href="http://127.0.0.1:8000/bookings">
+      <input type="button" class="btn btn-info" style="float: right; margin-right: 125px;" value="Back To Booking" />
+    </a>
+  </body>
+</html>

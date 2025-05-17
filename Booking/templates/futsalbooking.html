@@ -1,0 +1,97 @@
+{% extends 'base.html' %} {% block content %} {% load static%}
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Booking - Sirutar Futsal</title>
+    <link rel="stylesheet" href="css/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="{% static '/css/futsalbookingone.css' %}" />
+    <link
+      rel="stylesheet"
+      href="https://unicons.iconscout.com/release/v4.0.0/css/line.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css"
+    />
+  </head>
+  <body>
+    <header>
+      <div class="container">
+        <div class="left">
+          <img style="height: 370px" src="/static/images/bookinghpage.svg" />
+        </div>
+        <div class="right">
+          <br /><br /><br />
+          <p>Welcome to</p>
+          <h1>Sirutar Futsal</h1>
+          <p>
+            Sirutar Futsal is an online platform to connect sports facilities
+            to its users, We're breaking down barriers to getting more people
+            active.
+          </p>
+           <div class="m-3 p-3">
+      <a
+        href="http://127.0.0.1:8000/futsalbooking_form"
+        style="margin-left: 20%; background-color: #68B8EB; color: white; border-color: #68B8EB;"
+        class="btn btn-outline-info border rounded float-right col-lg-4"
+        >Book</a
+      >
+      
+    </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal -->
+
+    </header>
+    <section id="about">
+      <div class="about-row">
+        <div class="about-left-col">
+          <h1>About <span id="blue">Us</span></h1>
+          <p id="p-title">We are Sirutar Family!</p>
+          <p>
+            Sirutar Futsal is Nepal's leading Sports recreational platform
+            for Venues, academies and Individuals. Sports play a pivotal role in
+            bringing people together, sharing moments and enhancing the
+            well-being are reasons that form the essence of PlaySpots. Our Goal
+            is making the sports simple #OneTeamOneDream
+          </p>
+          <p>From Sirutar Futsal,</p>
+         <a href="http://127.0.0.1:8000/aboutus"><button class="c-btn">Read more</button></a> 
+        </div>
+        <div class="about-right-col">
+          <img style="height: 500px" src="/static/images/bookingabtus.svg" />
+        </div>
+      </div>
+    </section>
+  </body>
+ <h1 style="text-align: center;">Location of <span id="blue">Sirutar Futsal</span></h1>
+ <p style="text-align: center;" id="p-title">Note: Please use Encore Gaming Cafe location as our futsal location is opposite to the Cafe.</p>
+  <section class="map top" id="futsallocation">
+      <iframe
+        src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d2546.8710334004677!2d85.43103352494501!3d27.730701812482415!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2snp!4v1647099735345!5m2!1sen!2snp" 
+        width="600"
+        height="600"
+        style="border: 0"
+        allowfullscreen=""
+        loading="lazy"
+      ></iframe>
+      <style>
+        .map iframe {
+  width: 100%;
+}
+      </style>
+    </section>
+        </div>
+      </div>
+<style>
+  * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+</style>
+  {% endblock %}
+</html>

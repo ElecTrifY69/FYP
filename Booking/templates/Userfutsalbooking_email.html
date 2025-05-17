@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Futsal Booking Confirmation</title>
+</head>
+<body style="font-family: Arial, sans-serif; background-color: #f9f9f9; padding: 20px; color: #333;">
+  <table width="100%" cellpadding="0" cellspacing="0" style="max-width: 600px; margin: auto; background: #ffffff; border-radius: 10px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
+    <tr>
+      <td style="padding: 30px; text-align: center; background-color: #0066cc; color: white; border-top-left-radius: 10px; border-top-right-radius: 10px;">
+        <h2 style="margin: 0;">🎉 Futsal Booking Confirmed!</h2>
+      </td>
+    </tr>
+    <tr>
+      <td style="padding: 30px;">
+        <p>Hey <strong>{{fullname}}</strong>!</p>
+        <p>Thank you for booking with <strong>Sirutar Futsal</strong>. We're excited to host your game.</p>
+        <table style="width: 100%; margin-top: 20px;">
+          <tr>
+            <td style="padding: 8px 0;"><strong>Date:</strong></td>
+            <td style="padding: 8px 0;">{{date}}</td>
+          </tr>
+          <tr>
+            <td style="padding: 8px 0;"><strong>Time:</strong></td>
+            <td style="padding: 8px 0;">{{time}}</td>
+          </tr>
+          <tr>
+            <td style="padding: 8px 0;"><strong>Duration:</strong></td>
+            <td style="padding: 8px 0;">{{playing_hours}} hour(s)</td>
+          </tr>
+        </table>
+        <p style="margin-top: 20px;">If you have any questions, feel free to reply to this email.</p>
+        <p>We’ll see you on the court! 🏆</p>
+        <p style="margin-top: 40px;">Best regards, <br><strong>Sirutar Futsal Team</strong></p>
+      </td>
+    </tr>
+    <tr>
+      <td style="text-align: center; font-size: 12px; color: #aaa; padding: 20px; background-color: #f1f1f1; border-bottom-left-radius: 10px; border-bottom-right-radius: 10px;">
+        Sirutar Futsal, Bhaktapur, Nepal<br>
+        <a href="mailto:support@sirutarfutsal.com" style="color: #0066cc;">support@sirutarfutsal.com</a>
+      </td>
+    </tr>
+  </table>
+</body>
+</html>

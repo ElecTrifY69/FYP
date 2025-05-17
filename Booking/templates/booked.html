@@ -1,0 +1,147 @@
+{% load booking_filter %}
+<!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+      <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
+       <link rel="shortcut icon" type="x-icon" href="https://i.ibb.co/Y34f0yV/icontaskbar.png">
+  </head>
+  <title>Booking Result - Sirutar Futsal</title>
+  <body>
+
+   <!-- Navigation Bar-->
+    <style>
+      .fbinstaicon {
+  margin-right: 20px;
+}
+.fbinstaicon .fbinstabutton {
+  display: inline-block;
+  height: 60px;
+  width: 60px;
+  margin: 0 5px;
+  overflow: hidden;
+  background: #fff;
+  border-radius: 50px;
+  cursor: pointer;
+  box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease-out;
+}
+.fbinstaicon .fbinstabutton:hover {
+  width: 175px;
+}
+.fbinstaicon .fbinstabutton .icon {
+  display: inline-block;
+  height: 60px;
+  width: 60px;
+  text-align: center;
+  border-radius: 50px;
+  box-sizing: border-box;
+  line-height: 60px;
+  transition: all 0.3s ease-out;
+}
+.fbinstaicon .fbinstabutton:nth-child(1):hover .icon {
+  background: #4267b2;
+}
+.fbinstaicon .fbinstabutton:nth-child(2):hover .icon {
+  background: #e1306c;
+}
+.fbinstaicon .fbinstabutton .icon i {
+  font-size: 25px;
+  line-height: 60px;
+  transition: all 0.3s ease-out;
+}
+.fbinstaicon .fbinstabutton:hover .icon i {
+  color: #fff;
+}
+.fbinstaicon .button span {
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 60px;
+  margin-left: 10px;
+  transition: all 0.3s ease-out;
+}
+.fbinstaicon .fbinstabutton:nth-child(1) span {
+  color: #4267b2;
+}
+.fbinstaicon .fbinstabutton:nth-child(2) span {
+  color: #e1306c;
+}
+    </style>
+<br>
+<br />
+  <body>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+      crossorigin="anonymous"
+    />
+    <!--Bookings-->
+    <div class="container">
+  <div class="border rounded p-4 m-4">
+    <p class="display-4 pl-4 ml-4" style="font-family: poppins; text-align: center; color: #4267b2;">Sirutar Futsal Bookings</p>
+    <table class="table" id="{{booking.id}}">
+      <thead>
+        <tr>
+          <th>Sno.</th>
+          <th>Full Name</th>
+          <th>Time</th>
+          <th>Date</th>
+          <th>Playing Hours</th>
+          <th>Status</th>
+          <th>Update or Delete</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        {% for booking in booking_list %}
+        <tr>
+          <td>{{forloop.counter}}</td>
+          <td>{{booking.fullname}}</td>
+          <td>{{booking.time}}</td>
+          <td>{{booking.date}}</td>
+          <td>{{booking.playing_hours|hours}}</td>
+          {% if booking.status %}
+          <td style="color: rgb(0, 119, 54)">Booked</td>
+          {%else%}
+          <td style="color: rgb(221, 14, 14)">Pending</td>
+          {% endif %}
+          <td>
+            <a href="{% url 'update-booking' booking.id %}" class="btn btn-warning btn-sm">Update</a>  &nbsp; 
+            <form action="{% url 'delete-booking' booking.id %}" method="POST" class="d-inline">
+              {% csrf_token %}
+              <input type="submit" class="btn btn-danger btn-sm" value="Delete">
+            </form>
+          </td>
+        </tr>
+        {% endfor %}
+        
+      </tbody>
+      
+    </table>
+    <div class="row">
+      <a href="http://127.0.0.1:8000/futsalbooking_form">
+        <input
+          type="button"
+          style="margin-left: 965px;"
+          class="btn float-right btn-success col-lg-1.5"
+          value="Add Bookings"
+      /></a><br><br>
+      <a href="http://127.0.0.1:8000/report">
+        <input
+          type="button"
+          style="margin-left: 945px;"
+          class="btn float-right btn-success col-lg-1.5"
+          value="All Bookings Report"
+      /></a><br><br>
+      <a href="http://127.0.0.1:8000/">
+        <input
+          type="button"
+          style="margin-left: 945px;"
+          class="btn float-right btn-primary col-lg-1.5"
+          value="Back to HomePage"
+      /></a>
+    </div>    
+  </div>
+</div>
+  </body>
+</html>

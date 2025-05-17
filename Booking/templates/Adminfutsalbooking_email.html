@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>New Booking Alert</title>
+</head>
+<body style="font-family: Arial, sans-serif; background-color: #f3f3f3; padding: 20px;">
+  <table style="max-width: 600px; margin: auto; background: white; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+    <tr>
+      <td style="padding: 20px; background: #d9534f; color: white; border-top-left-radius: 8px; border-top-right-radius: 8px;">
+        <h2 style="margin: 0;">📢 New Booking Received</h2>
+      </td>
+    </tr>
+    <tr>
+      <td style="padding: 20px;">
+        <p>Hello Admin,</p>
+        <p>A new futsal booking has been made:</p>
+        <ul>
+          <li><strong>Name:</strong> {{fullname}}</li>
+          <li><strong>Date:</strong> {{date}}</li>
+          <li><strong>Time:</strong> {{time}}</li>
+          <li><strong>Duration:</strong> {{playing_hours}} hour(s)</li>
+        </ul>
+        <p>Please check the admin panel for more details or to confirm.</p>
+        <p style="margin-top: 30px;">– Sirutar Futsal Booking System</p>
+      </td>
+    </tr>
+  </table>
+</body>
+</html>

@@ -1,0 +1,439 @@
+{% extends 'base.html' %} {% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home Page</title>
+    <style>
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #C3C9D6; /* Updated to grey */
+}
+
+<!--        /* Navbar */-->
+<!--        .navbar {-->
+<!--            background-color: #333;-->
+<!--            overflow: hidden;-->
+<!--            display: flex;-->
+<!--            justify-content: space-between;-->
+<!--            align-items: center;-->
+<!--            padding: 10px 20px;-->
+<!--            position: sticky;-->
+<!--            top: 0;-->
+<!--            z-index: 1000;-->
+<!--        }-->
+
+<!--        .navbar .logo {-->
+<!--            color: white;-->
+<!--            font-size: 1.5em;-->
+<!--            font-weight: bold;-->
+<!--            text-decoration: none;-->
+<!--        }-->
+
+<!--        .navbar a {-->
+<!--            color: white;-->
+<!--            text-decoration: none;-->
+<!--            padding: 14px 20px;-->
+<!--            font-size: 16px;-->
+<!--        }-->
+
+<!--        .navbar a:hover {-->
+<!--            background-color: #575757;-->
+<!--            color: white;-->
+<!--        }-->
+
+        /* Main Content */
+        .main-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 50px 20px;
+        }
+
+        .main-content .text-section {
+            width: 50%;
+            padding: 20px;
+        }
+
+        .main-content .text-section h2 {
+            font-size: 2em;
+            margin-bottom: 20px;
+        }
+
+        .main-content .text-section p {
+            font-size: 1.1em;
+            color: #555;
+            line-height: 1.6;
+        }
+
+        .main-content .text-section .btn {
+            display: inline-block;
+            background-color: #007BFF;
+            color: white;
+            padding: 15px 25px;
+            font-size: 16px;
+            margin-top: 20px;
+            border-radius: 30px; /* Rounded corners */
+            text-align: center;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+        }
+
+        .main-content .text-section .btn:hover {
+            background-color: #0056b3;
+        }
+
+        .main-content .image-section {
+            width: 45%;
+        }
+
+        .main-content .image-section img {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Rules and Regulations */
+        .rules {
+            padding: 40px 30px;
+            background-color: #fafafa;
+            text-align: center;
+            border-top: 5px solid #333;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+            margin: 0 auto;
+            width: 80%;
+            border-radius: 10px;
+        }
+
+        .rules h2 {
+            font-size: 2.5em;
+            margin-bottom: 30px;
+            color: #333;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .rules ul {
+            list-style-type: none;
+            padding: 0;
+            font-size: 1.2em;
+            margin: 0 auto;
+            max-width: 800px;
+            text-align: left;
+        }
+
+        .rules ul li {
+            margin: 20px 0;
+            color: #555;
+            line-height: 1.6;
+            display: flex;
+            align-items: center;
+            padding: 15px;
+            background-color: #f1f1f1;
+            border-radius: 8px;
+            transition: background-color 0.3s ease;
+        }
+
+        .rules ul li:hover {
+            background-color: #e0e0e0;
+        }
+
+        .rules ul li:before {
+            content: "✔";
+            font-size: 1em;
+            color: #007BFF;
+            margin-right: 15px;
+            flex-shrink: 0;
+        }
+
+        .rules ul li span {
+            font-style: italic;
+            color: #777;
+            margin-left: 5px;
+        }
+
+        /* Mobile Responsiveness */
+        @media (max-width: 768px) {
+            .rules h2 {
+                font-size: 2em;
+            }
+
+            .rules ul {
+                font-size: 1em;
+            }
+        }
+
+        /* Features */
+        .features {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-top: 30px;
+        }
+
+        .features .feature {
+            width: 300px;
+            background: #f9f9f9;
+            margin: 15px;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .features .feature img {
+            width: 100px;
+            height: 100px;
+            margin-bottom: 10px;
+        }
+
+        /* Testimonial Carousel */
+        .testimonial-carousel {
+            display: flex;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            gap: 20px;
+            padding: 20px;
+            background-color: #333;
+            color: white;
+            text-align: center;
+            flex-wrap: nowrap;
+            margin: 0 auto;
+            justify-content: center;
+        }
+
+        .testimonial-carousel .testimonial {
+            flex: 0 0 300px;
+            background: #444;
+            padding: 20px;
+            border-radius: 8px;
+            scroll-snap-align: center;
+            min-width: 250px;
+        }
+
+.testimonial-carousel .testimonial img {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 50%;
+    margin-bottom: 10px;
+    border: 3px solid #fff; /* Optional: white border for cleaner look */
+}
+
+
+        @media (max-width: 768px) {
+            .testimonial-carousel {
+                justify-content: flex-start;
+                padding: 15px;
+            }
+
+            .testimonial-carousel .testimonial {
+                flex: 0 0 250px;
+                margin: 0 10px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .testimonial-carousel .testimonial {
+                flex: 0 0 200px;
+                margin: 0 8px;
+            }
+
+            .testimonial-carousel .testimonial img {
+                width: 60px;
+                height: 60px;
+            }
+        }
+
+        /* Gallery */
+        .gallery {
+            padding: 40px 20px;
+            text-align: center;
+        }
+
+        .gallery h2 {
+            font-size: 2em;
+            margin-bottom: 20px;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+        }
+
+        .gallery-grid img {
+            width: 100%;
+            border-radius: 8px;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Social Media */
+        .social-media {
+            text-align: center;
+            padding: 40px 20px;
+            background-color: #333;
+            color: white;
+        }
+
+        .social-media h2 {
+            font-size: 2em;
+            margin-bottom: 20px;
+            color: #fff;
+        }
+
+        .social-media-icons {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            flex-wrap: wrap;
+        }
+
+        .social-media-icons a {
+            color: white;
+            font-size: 40px;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .social-media-icons a:hover {
+            color: #007BFF;
+        }
+
+        /* Footer */
+        .footer {
+            background-color: #222;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            position: relative;
+        }
+
+        .footer a {
+            color: white;
+            text-decoration: none;
+        }
+
+        .footer a:hover {
+            text-decoration: underline;
+        }
+
+        .footer p {
+            margin: 0;
+        }
+
+        /* Red Login Button for Logged In User */
+        .navbar .btn-login {
+            background-color: #e74c3c; /* Red color */
+            border-radius: 30px
+        }
+    </style>
+</head>
+<body>
+<!--    <div class="navbar">-->
+<!--        <a href="/" class="logo">Hamro Futsal</a>-->
+<!--        <div>-->
+<!--            <a href="/about">About</a>-->
+<!--            <a href="">Contact</a>-->
+<!--            <a href="">Booking</a>-->
+<!--            <a href="/shopping">Shopping</a>-->
+<!--            <a href="">Tournaments</a>-->
+<!--            {% if request.session.customer %}-->
+<!--                <a href="/logout" class="btn-login">Logout</a>-->
+<!--            {% else %}-->
+<!--                <a href="/login" >Login</a>-->
+<!--                <a href="/signup">Sign Up</a>-->
+<!--            {% endif %}-->
+<!--        </div>-->
+<!--    </div>-->
+
+<br>
+<br>
+<br>
+    <div class="main-content">
+        <div class="text-section">
+            <h2>Welcome to Sirutar Futsal!</h2>
+            <p>At Sirutar Futsal, we offer world-class facilities for futsal lovers. Whether you're a beginner or a seasoned player, our fields are designed to provide the perfect environment for a great game. We take pride in offering a variety of services, including easy booking, exciting tournaments, and corporate events, all designed with you in mind.</p>
+            <p>Join us today, and experience the best in futsal! Our team is dedicated to giving you an amazing experience every time you step onto the field.</p>
+            <a href="http://127.0.0.1:8000/futsalbooking_form" style="background-color: #68B8EB; color: white; border-color: #68B8EB;" class="btn">Booking</a>
+            <a href="http://127.0.0.1:8000/shopping" style="background-color: #68B8EB; color: white; border-color: #68B8EB;"class="btn">Shopping</a>
+        </div>
+        <div class="image-section">
+            <img src="https://img.freepik.com/premium-photo/football-futsal-player-ball-futsal-floor-sports-background-indoor-soccer-sports-hall-youth-futsal-league-indoor-football-players-soccer-ball-generative-ai_117038-8122.jpg" alt="Futsal Action Image">
+        </div>
+    </div>
+
+    <div class="rules">
+        <h2>Rules and Regulations</h2>
+        <ul>
+            <li>Players must arrive at least 15 minutes before the scheduled game time.</li>
+            <li>All players must wear appropriate footwear and sports attire.</li>
+            <li>Futsal is a non-contact sport, rough play will not be tolerated.</li>
+            <li>Booking is required before entering the facility. Walk-ins will be subject to availability.</li>
+            <li>Players are responsible for their personal belongings. The facility is not liable for lost items.</li>
+        </ul>
+    </div>
+
+    <div class="features">
+        <div class="feature">
+            <img src="https://img.lovepik.com/png/20231013/Hand-drawn-football-logo-football-pattern-football-icon-hand-drawn_193503_wh1200.png" alt="Field Icon">
+            <h3>Premium Fields</h3>
+            <p>Top-quality futsal grounds for all levels of play.</p>
+        </div>
+        <div class="feature">
+            <img src="https://img.icons8.com/ios-filled/100/000000/goal.png" alt="Goal Icon">
+            <h3>Flexible Booking</h3>
+            <p>Book your field at a time that suits you best.</p>
+        </div>
+        <div class="feature">
+            <img src="https://img.icons8.com/ios-filled/100/000000/medal.png" alt="Medal Icon">
+            <h3>Tournaments</h3>
+            <p>Compete in exciting futsal tournaments.</p>
+        </div>
+    </div>
+
+    <div class="testimonial-carousel">
+        <div class="testimonial">
+            <img src="https://plus.unsplash.com/premium_photo-1689551670902-19b441a6afde?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8cmFuZG9tJTIwcGVvcGxlfGVufDB8fDB8fHww" alt="Customer 1">
+            <p>"Best futsal experience ever!"</p>
+            <p>- Rose Hank</p>
+        </div>
+        <div class="testimonial">
+            <img src="https://plus.unsplash.com/premium_photo-1688891564708-9b2247085923?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8cmFuZG9tJTIwcGVvcGxlfGVufDB8fDB8fHww" alt="Customer 2">
+            <p>"Amazing facilities and staff!"</p>
+            <p>- John Mark</p>
+        </div>
+        <div class="testimonial">
+            <img src="https://plus.unsplash.com/premium_photo-1664541336896-b3d5f7dec9a3?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTN8fHJhbmRvbSUyMHBlb3BsZXxlbnwwfHwwfHx8MA%3D%3D" alt="Customer 3">
+            <p>"Highly recommend for corporate events."</p>
+            <p>- Lily Sam</p>
+        </div>
+        <!-- New Testimonial -->
+        <div class="testimonial">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQVEjoPV0LSFFVpaHXtFwdDGOczYXCIwZmi-Q&s" alt="Customer 4">
+            <p>"Fantastic environment for futsal tournaments!"</p>
+            <p>- Ben Timber</p>
+        </div>
+    </div>
+
+    <div class="gallery">
+        <h2>Gallery</h2>
+        <div class="gallery-grid">
+            <img src="https://imagelinkglobal.com/products/ILEA002720231/?sample" alt="Gallery 1">
+            <img src="https://media.istockphoto.com/id/1226662865/photo/blurry-ball-after-futsal-player-control-it-to-shoot-to-goal.jpg?s=612x612&w=0&k=20&c=hgZyAhc5eYzurVB-Z9rVyXQ2u5DBVbpFzWuSueNnQD8=" alt="Gallery 2">
+            <img src="https://live.staticflickr.com/8309/7981401055_931a20bc34.jpg" alt="Gallery 3">
+            <img src="https://img.freepik.com/premium-photo/close-up-futsal-players-feet-kicking-ball_8595-27574.jpg" alt="Gallery 4">
+        </div>
+    </div>
+
+    <div class="footer">
+        <p>&copy; 2025 Sirutar Futsal | <a href="/privacy-policy">Privacy Policy</a></p>
+    </div>
+</body>
+</html>
+{% endblock %}
